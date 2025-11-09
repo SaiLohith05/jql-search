@@ -21,7 +21,6 @@ body {
   width: 100vw;
   height: 100vh;
   padding: 20px;
-  border-radius: 10px;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -51,7 +50,6 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  font-size: large;
   transition: background-color 0.2s, color 0.2s;
 }
 
@@ -107,7 +105,6 @@ label {
   display: block;
   margin-top: 20px;
   font-weight: bold;
-  font-size: large;
 }
 
 .toast-overlay {

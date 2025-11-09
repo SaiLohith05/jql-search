@@ -6,13 +6,22 @@ const App = () => {
   const [output,setOutput]=useState();
   const [theme,setTheme]=useState(false);
   const [showToast, setShowToast] = useState(false);
-  
+  const [before,setBefore]=useState(false)
 
   const handleSubmit=()=>{
     const lines =input.split("\n").map((line)=>line.trim()).filter((line)=>line!=="")
-    const ans=lines.map((line)=>'text ~ "' +line+'*" OR');
+    let ans="";
+    if(before){
+       ans=lines.map((line)=>'text ~ "*' +line+'" OR');
+    }
+    else{
+       ans=lines.map((line)=>'text ~ "' +line+'*" OR');
+
+    }
     
-    setOutput("issue in ( "+ans.join("\n").slice(0, -3) +");")
+
+    
+    setOutput("( "+ans.join("\n").slice(0, -3) +");")
   }
 
   const handleCopy=()=>{
@@ -30,6 +39,10 @@ const App = () => {
     setShowToast(false);
   };
 
+  const handleBefore=()=>{
+    setBefore((prev)=>!prev)
+
+  }
 
 
   return (
@@ -42,6 +55,7 @@ const App = () => {
       <div>
         <button onClick={handleSubmit}>submit</button>
         <button onClick={handleCopy}>Copy to clipboard</button>
+        <button onClick={handleBefore}>{before?"After":"Before"}</button>
       </div>
       <textarea type="text" name="output" value={output}>
       </textarea>
